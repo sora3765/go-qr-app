@@ -3,6 +3,7 @@
 - URLからQRコードを生成する
 - サンプルコード
  `$ qrg -o ./qr-image.png -w 500 -d 500 https://www.google.com/`
+ 
  `$ go run main.go -o ./qr-image.png -w 500 -d 500 https://www.google.com/`
  
  - option
