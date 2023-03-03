@@ -1,11 +1,11 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"go-qr-app/qrgen"
 	"image/png"
 	"os"
-
-	"go-qr-app/qrgen"
 )
 
 var favicon = []byte{
@@ -20,6 +20,13 @@ var favicon = []byte{
 }
 
 func main() {
+	//commandLine
+	flag.Parse()
+	url := flag.Arg(0)
+	if url == "" {
+		fmt.Println("URL is empty")
+		return
+	}
 	file, err := os.Create("./qr.png")
 	if err != nil {
 		fmt.Printf("file generation failed: %v\n", err)
@@ -27,7 +34,7 @@ func main() {
 	}
 	defer file.Close()
 
-	img, err := qrgen.GenQRCode("https://www.google.com/")
+	img, err := qrgen.GenQRCode(url)
 	if err != nil {
 		fmt.Printf("image generation failed: %v\n", err)
 		return
